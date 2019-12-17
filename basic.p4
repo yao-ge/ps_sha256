@@ -14,7 +14,6 @@ header ethernet_t {
     bit<16>   etherType;
 }
 header length_t{
-
     bit<64> len;
 }
 
@@ -630,7 +629,7 @@ control MyIngress(inout headers hdr,
     apply {
 
         if(hdr.ethernet.dstAddr[7:0] != 0xff)
-           mark_to_drop();
+           mark_to_drop(standard_metadata);
         else{
 
             debug.apply();
